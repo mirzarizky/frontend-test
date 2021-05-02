@@ -32,6 +32,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'even'],
+      grayscale: ['hover', 'focus'],
     },
   },
   plugins: [],
