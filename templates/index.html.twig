@@ -141,9 +141,42 @@
 	</section>
 
 	<section class="container my-12">
-		<div class="space-y-1">
+		<div class="mb-5 space-y-1">
 			<h2 class="text-2xl font-bold text-center text-gray-700">Paket Hosting Singapura yang Tepat</h2>
 			<h4 class="text-xl text-center text-gray-700">Diskon 40% + Domain dan SSL Gratis untuk Anda</h4>
+		</div>
+
+		<div class="grid grid-cols-1 gap-y-5 gap-x-5 lg:gap-x-0 lg:gap-y-0 md:grid-cols-2 lg:grid-cols-4">
+			{% for pricing in pricings %}
+				<div class="">
+					<div class="text-center rounded-sm {{ pricing.is_best_seller ? 'bg-primary-lighter text-white' : 'bg-white text-gray-900' }}">
+						{% if pricing.is_best_seller %}
+							<div>
+								<span class="px-2 py-1 text-xs text-white bg-green-500 rounded-full">Best Sller</span>
+							</div>
+						{% endif %}
+
+						<h2 class="py-1 text-lg font-bold {{ pricing.is_best_seller ? '' : 'border rounded-t border-gray-100' }}">
+							{{ pricing.name }}
+						</h2>
+						<div class="py-2 {{ pricing.is_best_seller ? '' : 'border border-gray-100' }}">
+							<p class="line-through">Rp.{{ pricing.price.slashed|format_number }}</p>
+							<div>Rp
+								<span class="text-3xl font-bold">{{ pricing.price.current|format_number }}</span>
+								/bln</div>
+						</div>
+						<div class="py-2 {{ pricing.is_best_seller ? 'bg-primary' : 'border border-gray-100' }}">
+							<strong>{{ pricing.users }}</strong>
+							<span class="ml-1">Pengguna Terdaftar</span>
+						</div>
+						<div class="py-5 text-gray-900 bg-white border rounded-b-sm {{ pricing.is_best_seller ? 'border-primary-lighter' : 'border-gray-100'}}">
+							{% autoescape %}
+								{{ pricing.description|raw }}
+							{% endautoescape %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
 	</section>
 
